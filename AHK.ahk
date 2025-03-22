@@ -1,28 +1,27 @@
-#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
-; #Warn  ; Enable warnings to assist with detecting common errors.
-SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
-SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+#Requires AutoHotkey v2.0
+; Migrated from AHK v1.1 to v2.0
 
-!c::
-Run, "C:\Program Files\Google\Chrome\Application\chrome.exe" --profile-directory="Default"
-return
+; SendMode is now default in v2.0
+; SetWorkingDir is now A_WorkingDir := A_ScriptDir
+A_WorkingDir := A_ScriptDir  ; Ensures a consistent starting directory.
 
-!f::
-Run, "C:\Program Files\Google\Chrome\Application\chrome.exe" --profile-directory="Profile 1"
-return
+; Hotkey definitions
+!c:: {
+    Run('"C:\Program Files\Google\Chrome\Application\chrome.exe" --profile-directory="Profile 1"')
+}
 
-!z::
-Send      {Media_Play_Pause}   
-return  
+!z:: {
+    Send("{Media_Play_Pause}")
+}  
 
-!WheelUp::
-SoundSet, +2 
-return
+!WheelUp:: {
+    SoundSetVolume("+2")
+}
 
-!WheelDown::
-SoundSet, -2
-return
+!WheelDown:: {
+    SoundSetVolume("-2")
+}
 
-^.::
-Send, ->
-return
+^.:: {
+    Send("->")
+}
